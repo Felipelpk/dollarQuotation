@@ -20,6 +20,10 @@ export function NewExchangeDolar() {
     async function handleExchangeSubmit(event: FormEvent){
         event.preventDefault();
 
+        if(exchangeDate === ''){
+            return
+        }
+        
         await dolarExchange({
             variables: {
                 exchangeDate
