@@ -21,10 +21,10 @@ export class CurrencyExchange {
 
         const dateExchangeFormatedd = `0${month}-${day}-${year}`;
         
-        const isSaved = await this.currencyDolarRepository.findBy({ cotacaoData: dateExchangeFormatedd });
+        const valueFromDB = await this.currencyDolarRepository.findBy({ cotacaoData: dateExchangeFormatedd });
         
-        if(isSaved[0]){
-            value = isSaved[0]
+        if(valueFromDB[0]){
+            value = valueFromDB[0]
         } else {
             const valueFromBcbApi = await bcApi.get(`CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='${dateExchangeFormatedd}'&$top=100&$format=json`);
 
