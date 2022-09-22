@@ -1,6 +1,7 @@
 import { gql, useLazyQuery } from "@apollo/client";
 import { FormEvent, useEffect, useState } from "react"
-import '../App.css'
+import { Button, HStack, Input, Flex, FormControl, Text, Heading, Stack, ScaleFade, Icon } from "@chakra-ui/react";
+import { BsArrowUpCircleFill, BsArrowDownCircleFill } from 'react-icons/all';
 
 const GET_EXCHANGE = gql`
     query ($exchangeDate: String!){
@@ -23,7 +24,7 @@ export function NewExchangeDolar() {
         if(exchangeDate === ''){
             return
         }
-        
+
         await dolarExchange({
             variables: {
                 exchangeDate
@@ -39,38 +40,129 @@ export function NewExchangeDolar() {
     }, [data]);
 
     return (
-        <div className="content">
+        <Flex marginTop="2rem" flexDir="column" justifyContent="center" alignItems="center">
             <form onSubmit={handleExchangeSubmit}>
-                <div className="formContent">
-                    <input 
-                        className="inputDate" 
-                        type="date" 
+                <HStack w="300px">
+                    <Input 
+                        className="inputCalendar"
+                        color="white"
+                        placeholder="aqui"
+                        _placeholder={{
+                            textTransform: 'uppercase'
+                        }}
+                        borderColor="whiteAlpha.400"
+                        type="date"
                         value={exchangeDate} 
-                        onChange={e => setExchangeDate(e.target.value)} 
+                        onChange={e => setExchangeDate(e.target.value)}
+                        colorScheme="gray"
+                        _hover={{
+                            borderColor: 'whiteAlpha.600'
+                        }}
                     />
-                    <button type="submit"> Enviar </button>
-                </div>
+                    <Button
+                        type="submit"
+                        bgGradient='linear(to-r, teal.500, green.500)'
+                        fontWeight="extrabold"
+                        w="fit-content"
+                        paddingX="2rem"
+                        _hover={{
+                            bgGradient: 'linear(to-r, #019e9e, #00a200)'
+                        }}
+                        _active={{
+                            bgGradient: 'linear(to-r, #007777, #006600)'
+                        }}
+                    >
+                        Enviar
+                    </Button>
+                </HStack>
             </form>
-            <div className="responseData">
-                {(loading && !error) && <p>Carregando...</p>}
-                {error && <p>Ops... parece que tivemos problemas para verificar a cotação desse dia, verifique a data e tente novamente.</p>}
-                {data && (
-                    <>
-                        <div className="responseDiv" >
-                            <p className="responseTitle">Cotação de Compra:</p>
-                            <p className="responseValue">{data?.dolarExchange.cotacaoCompra}</p>
-                        </div>
-                        <div className="responseDiv" >
-                            <p className="responseTitle">Cotação de Venda:</p>
-                            <p className="responseValue">{data?.dolarExchange.cotacaoVenda}</p>
-                        </div>
-                        <div className="responseDiv" >
-                            <p className="responseTitle">Data e Hora da Cotação:</p>
-                            <p className="responseValue">{dataHoraCotacaoFormatedd}</p>
-                        </div>
-                    </>
-                )}
-            </div>
-        </div>
+                <Flex
+                    marginTop="2rem"
+                    flexDir="column"
+                    alignItems="center"
+                    justifyContent="flex-start"
+                    h="600px"
+                >
+                    <ScaleFade initialScale={0.3} in={data}>
+                        {(loading && !error) && (
+                            <Text fontSize="1rem" fontWeight="bold">
+                                Carregando...
+                            </Text>
+                        )}
+                        {error && (
+                            <Text fontSize="1rem" fontWeight="bold">
+                                Tivemos um problema em verificar a cotação desse dia, tente outra data.
+                            </Text>
+                        )}
+                        <Stack
+                            flexDir="column"
+                            alignItems="center"
+                            justifyContent="center"
+                            spacing="1rem"
+                        >
+                            <Stack
+                                className="card"
+                                bgColor="#2d3748"
+                                borderRadius="8px"
+                                padding="1.5rem"
+                                flexDir="column"
+                                alignItems="center"
+                                justifyContent="center"
+                            >
+                                <Heading 
+                                    fontSize="1rem"
+                                >
+                                    Data e Hora da Cotação:
+                                </Heading>
+                                <Text>
+                                    {dataHoraCotacaoFormatedd}
+                                </Text>
+                            </Stack>
+                            <Stack
+                                className="card"
+                                bgColor="#2d3748"
+                                borderRadius="8px"
+                                padding="1.5rem"
+                                flexDir="column"
+                                alignItems="center"
+                                justifyContent="center"
+                            >
+                                <Heading 
+                                    fontSize="1rem"
+                                >
+                                    Cotação de Compra
+                                </Heading>
+                                <HStack>
+                                    <Icon as={BsArrowUpCircleFill} color="green.300" />
+                                    <Text>
+                                        {data?.dolarExchange.cotacaoCompra}
+                                    </Text>
+                                </HStack>
+                            </Stack>
+                            <Stack
+                                className="card"
+                                bgColor="#2d3748"
+                                borderRadius="8px"
+                                padding="1.5rem"
+                                flexDir="column"
+                                alignItems="center"
+                                justifyContent="center"
+                            >
+                                <Heading 
+                                    fontSize="1rem"
+                                >
+                                    Cotação de Venda
+                                </Heading>
+                                <HStack>
+                                    <Icon as={BsArrowDownCircleFill} color="red.300" />
+                                    <Text>
+                                        {data?.dolarExchange.cotacaoVenda}
+                                    </Text>
+                                </HStack>
+                            </Stack>
+                        </Stack>
+                    </ScaleFade>
+                </Flex>
+        </Flex>
     )
 }
