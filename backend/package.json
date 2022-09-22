@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsnd --respawn --transpile-only src/index.ts",
+    "typeorm": "tsnd node_modules/typeorm/cli.js",
+    "migration:generate": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:generate ./src/database/migrations",
+		"migration:run": "typeorm-ts-node-commonjs -d ./src/data-source.ts migration:run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^3.10.2",
+    "axios": "^0.21.0",
+    "class-validator": "^0.13.2",
+    "graphql": "^15.3.0",
+    "pg": "^8.8.0",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^10.8.2",
+    "type-graphql": "^1.1.1",
+    "typeorm": "^0.3.7"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.18",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.8.3"
+  }
+}
