@@ -1,8 +1,8 @@
 # Dollar Quotation 
 
-> Repositório destinado a `criação de um site e backend` para informar a cotação do dolar apartir de uma data selecionada pelo usuário.
->
-> O Front-end esta desenvolvido utilizando VITE + Typescrip e o Back-end esta feito em Nodejs + Graphql.
+>Repository destined to the creation of a Front-end and Back-end to inform the dollar quotation from a date selected by the user.
+
+>The Front-end is developed using Vitejs + Typescript and the Back-end is made in Nodejs + Graphql.
 
 ## Instalando Dependências
 
