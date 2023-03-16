@@ -1,10 +1,8 @@
 # Dollar Quotation 
 
-> Repositório destinado a `criação de um site` para as [PLPs](http://themis.org.br/fazemos/promotoras-legais-populares/) de Guaíba - Rio Grande do Sul.
+> Repositório destinado a `criação de um site e backend` para informar a cotação do dolar apartir de uma data selecionada pelo usuário.
 >
-> O objetivo é <ins>disponibilizar uma maneira de contato e divulgação mais rápida e eficaz</ins>.
->
-> O site será desenvolvido utilizando ReactJS e o design será feito no Figma.
+> O Front-end esta desenvolvido utilizando VITE + Typescrip e o Back-end esta feito em Nodejs + Graphql.
 
 ## Instalando Dependências
 
