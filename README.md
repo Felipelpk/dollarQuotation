@@ -1,3 +1,11 @@
+# Dollar Quotation 
+
+> Repositório destinado a `criação de um site` para as [PLPs](http://themis.org.br/fazemos/promotoras-legais-populares/) de Guaíba - Rio Grande do Sul.
+>
+> O objetivo é <ins>disponibilizar uma maneira de contato e divulgação mais rápida e eficaz</ins>.
+>
+> O site será desenvolvido utilizando ReactJS e o design será feito no Figma.
+
 ## Instalando Dependências
 
 ```bash
